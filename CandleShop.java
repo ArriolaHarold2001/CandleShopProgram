@@ -1,3 +1,5 @@
+
+// in interaction tab -- > run CandleShop
 import java.util.Scanner;
 import java.text.DecimalFormat;
 //The candle names are
@@ -148,8 +150,6 @@ public class CandleShop {
 
         Scanner keyboard = new Scanner(System.in);
         // other variables to help complete the algorithm to sell Candles
-        System.out.println("Welcome to the Candle Shop! Enter 0 to enter the next prompt.");
-        int continuePrompt = keyboard.nextInt();
         System.out.println(
                 "How many of the " + candleOne.lusciousLavender() + " candles would you like? Enter a number amount.");
         int lusciousLavenderKey = keyboard.nextInt();
@@ -158,7 +158,7 @@ public class CandleShop {
         System.out.println("How many of the Spice N' Dice candles would you like? Enter a number amount.");
         int spicyNDiceyKey = keyboard.nextInt();
         System.out.println("\n" + "Receipt");
-
+        // Set the keyboard inputs for amounts
         candleOne.setLusciousLavenderAmount((int) lusciousLavenderKey);
         candleTwo.setFragrantFloralsAmount((int) fragrantFloralsKey);
         candleThree.setSpicyNDiceyAmount((int) spicyNDiceyKey);
@@ -169,6 +169,10 @@ public class CandleShop {
         double userCandleChoicePrice3 = (double) candleThree.spicyNDiceyAmount() * candleThree.spicyNDiceyPrice();
         // adds up the total of each individual candle
         double userCandleTotalPrice = (double) userCandleChoicePrice1 + userCandleChoicePrice2 + userCandleChoicePrice3;
+        // Determines the total Burn time in hours
+        int totalBurnTime = (int) (lusciousLavenderKey * candleOne.lusciousLavenderBurnTime())
+                + (fragrantFloralsKey * candleTwo.fragrantFloralsBurnTime())
+                + (spicyNDiceyKey * candleThree.spicyNDiceyBurnTime());
         // Determines the amount per burn time of each candle
         double updatedBurnTime1 = (double) userCandleChoicePrice1 / candleOne.lusciousLavenderBurnTime();
         double updatedBurnTime2 = (double) userCandleChoicePrice2 / candleTwo.fragrantFloralsBurnTime();
@@ -190,27 +194,30 @@ public class CandleShop {
                 "\n" + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
 
         System.out.printf(candleOne.lusciousLavender() + "\n" + "Amount: " + candleOne.lusciousLavenderAmount() + "\n"
-                + "Dollar per Burn Time: " + formatted1 + "\n" + "Price: $" + "%.2f", userCandleChoicePrice1);
+                + "Burn Time: " + candleOne.lusciousLavenderBurnTime() + " hours" + "\n" + "Dollar per Burn Time: "
+                + formatted1 + "\n" + "Price: $" + "%.2f", userCandleChoicePrice1);
         // Break Line
         System.out.println(
                 "\n" + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
 
         System.out.printf(candleTwo.fragrantFlorals() + "\n" + "Amount: " + candleTwo.fragrantFloralsAmount() + "\n"
-                + "Dollar per Burn Time: " + formatted2 + "\n" + "Price: $" + "%.2f", userCandleChoicePrice2);
+                + "Burn Time: " + candleTwo.fragrantFloralsBurnTime() + " hours" + "\n" + "Dollar per Burn Time: "
+                + formatted2 + "\n" + "Price: $" + "%.2f", userCandleChoicePrice2);
         // Break Line
         System.out.println(
                 "\n" + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
 
         System.out.printf(candleThree.spicyNDicey() + "\n" + "Amount: " + candleThree.spicyNDiceyAmount() + "\n"
-                + "Dollar per Burn Time: " + formatted3 + "\n" + "Price: $" + "%.2f", userCandleChoicePrice3);
+                + "Burn Time: " + candleThree.spicyNDiceyBurnTime() + " hours" + "\n" + "Dollar per Burn Time: "
+                + formatted3 + "\n" + "Price: $" + "%.2f", userCandleChoicePrice3);
         // Break Line
         System.out.println(
                 "\n" + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
 
         // prints out the total price of all the candles added together
-        System.out.printf("Total Dollar per Burn Time: " + formattedTotal + "\n" + "Total Price: " + "%.2f",
-                userCandleTotalPrice);
+        System.out.printf("Total Burn Time: " + totalBurnTime + "\n" + "Total Dollar per Burn Time: " + formattedTotal
+                + "\n" + "Total Price: " + "%.2f", userCandleTotalPrice);
         System.out.println("\n");
-
+        // in interaction tab -- > run CandleShop
     }
 }
