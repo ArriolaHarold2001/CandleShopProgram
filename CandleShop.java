@@ -150,6 +150,8 @@ public class CandleShop {
 
         Scanner keyboard = new Scanner(System.in);
         // other variables to help complete the algorithm to sell Candles
+        System.out.println("Enter 0 to continue: ");
+        int continuePrompt = keyboard.nextInt();
         System.out.println(
                 "How many of the " + candleOne.lusciousLavender() + " candles would you like? Enter a number amount.");
         int lusciousLavenderKey = keyboard.nextInt();
@@ -157,7 +159,6 @@ public class CandleShop {
         int fragrantFloralsKey = keyboard.nextInt();
         System.out.println("How many of the Spice N' Dice candles would you like? Enter a number amount.");
         int spicyNDiceyKey = keyboard.nextInt();
-        System.out.println("\n" + "Receipt");
         // Set the keyboard inputs for amounts
         candleOne.setLusciousLavenderAmount((int) lusciousLavenderKey);
         candleTwo.setFragrantFloralsAmount((int) fragrantFloralsKey);
@@ -187,37 +188,51 @@ public class CandleShop {
         String formatted3 = formatter.format(updatedBurnTime3);
         String formattedTotal = formatter.format(updatedBurnTimeTotal);
 
-        // prints out each individual price totals
-        // This line is used to make the results easier to read from the console
-        // Break Line
-        System.out.println(
-                "\n" + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
+        // Easter egg
+        if (continuePrompt <= 1000) {
 
-        System.out.printf(candleOne.lusciousLavender() + "\n" + "Amount: " + candleOne.lusciousLavenderAmount() + "\n"
-                + "Burn Time: " + candleOne.lusciousLavenderBurnTime() + " hours" + "\n" + "Dollar per Burn Time: "
-                + formatted1 + "\n" + "Price: $" + "%.2f", userCandleChoicePrice1);
-        // Break Line
-        System.out.println(
-                "\n" + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
+            // prints out each individual price totals
+            // This line is used to make the results easier to read from the console
+            // Break Line
+            System.out.println("\n" + "Receipt");
+            System.out.println("\n"
+                    + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
 
-        System.out.printf(candleTwo.fragrantFlorals() + "\n" + "Amount: " + candleTwo.fragrantFloralsAmount() + "\n"
-                + "Burn Time: " + candleTwo.fragrantFloralsBurnTime() + " hours" + "\n" + "Dollar per Burn Time: "
-                + formatted2 + "\n" + "Price: $" + "%.2f", userCandleChoicePrice2);
-        // Break Line
-        System.out.println(
-                "\n" + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
+            System.out.printf(
+                    candleOne.lusciousLavender() + "\n" + "Amount: " + candleOne.lusciousLavenderAmount() + "\n"
+                            + "Burn Time: " + candleOne.lusciousLavenderBurnTime() + " hours" + "\n"
+                            + "Dollar per Burn Time: " + formatted1 + "\n" + "Price: $" + "%.2f",
+                    userCandleChoicePrice1);
+            // Break Line
+            System.out.println("\n"
+                    + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
 
-        System.out.printf(candleThree.spicyNDicey() + "\n" + "Amount: " + candleThree.spicyNDiceyAmount() + "\n"
-                + "Burn Time: " + candleThree.spicyNDiceyBurnTime() + " hours" + "\n" + "Dollar per Burn Time: "
-                + formatted3 + "\n" + "Price: $" + "%.2f", userCandleChoicePrice3);
-        // Break Line
-        System.out.println(
-                "\n" + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
+            System.out.printf(
+                    candleTwo.fragrantFlorals() + "\n" + "Amount: " + candleTwo.fragrantFloralsAmount() + "\n"
+                            + "Burn Time: " + candleTwo.fragrantFloralsBurnTime() + " hours" + "\n"
+                            + "Dollar per Burn Time: " + formatted2 + "\n" + "Price: $" + "%.2f",
+                    userCandleChoicePrice2);
+            // Break Line
+            System.out.println("\n"
+                    + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
 
-        // prints out the total price of all the candles added together
-        System.out.printf("Total Burn Time: " + totalBurnTime + "\n" + "Total Dollar per Burn Time: " + formattedTotal
-                + "\n" + "Total Price: " + "%.2f", userCandleTotalPrice);
-        System.out.println("\n");
-        // in interaction tab -- > run CandleShop
+            System.out.printf(
+                    candleThree.spicyNDicey() + "\n" + "Amount: " + candleThree.spicyNDiceyAmount() + "\n"
+                            + "Burn Time: " + candleThree.spicyNDiceyBurnTime() + " hours" + "\n"
+                            + "Dollar per Burn Time: " + formatted3 + "\n" + "Price: $" + "%.2f",
+                    userCandleChoicePrice3);
+            // Break Line
+            System.out.println("\n"
+                    + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
+
+            // prints out the total price of all the candles added together
+            System.out.printf("Total Burn Time: " + totalBurnTime + "\n" + "Total Dollar per Burn Time: "
+                    + formattedTotal + "\n" + "Total Price: " + "%.2f", userCandleTotalPrice);
+            System.out.println("\n");
+            // in interaction tab -- > run CandleShop
+        } else if (continuePrompt > 1000) {
+            System.out.println(
+                    "Hey! your not supposed to be back here. Get out of here and put those candles back where you found them! This area is EMPLOYEE ONLY!!");
+        }
     }
 }
