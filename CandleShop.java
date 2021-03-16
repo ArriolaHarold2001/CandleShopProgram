@@ -236,7 +236,7 @@ public class CandleShop {
             Thread.sleep(3000);
             System.out.println("This is my last Warning!");
             Thread.sleep(4000);
-            System.out.println("Ok! you made me do it. You are now banned from the Candle Shop!!!!!!!");
+            System.out.println("Ok! you made me do it. You are now banned from the Candle Shop!");
         }
     }
 }
