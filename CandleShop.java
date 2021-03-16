@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.text.DecimalFormat;
 //The candle names are
 //Luscious Lavender
 //Fragrent Florals
@@ -33,12 +34,20 @@ class TypeCandleOne {
         return this.TYPE_CANDLE_NAME_1;
     }
 
+    public int lusciousLavenderBurnTime() {
+        return this.typeCandleBurnTime1;
+    }
+
     public void setLusciousLavenderAmount(int newLusciousLavenderAmount) {
         this.typeCandleAmount1 = newLusciousLavenderAmount;
     }
 
     public void setLusciousLavenderPrice(double newLusciousLevenderPrice) {
         this.typeCandlePrice1 = newLusciousLevenderPrice;
+    }
+
+    public void setLusciousLavenderBurnTime(int newLusciousLavenderBurnTime) {
+        this.typeCandleBurnTime1 = newLusciousLavenderBurnTime;
     }
 }
 
@@ -69,12 +78,20 @@ class TypeCandleTwo {
         return this.TYPE_CANDLE_NAME_2;
     }
 
+    public int fragrantFloralsBurnTime() {
+        return this.typeCandleBurnTime2;
+    }
+
     public void setFragrantFloralsAmount(int newFragrantFloralsAmount) {
         this.typeCandleAmount2 = newFragrantFloralsAmount;
     }
 
     public void setFragrantFloralsPrice(double newFragrantFloralsPrice) {
         this.typeCandlePrice2 = newFragrantFloralsPrice;
+    }
+
+    public void setFragrantFloralsBurnTime(int newFragrantFloralsBurnTime) {
+        this.typeCandleBurnTime2 = newFragrantFloralsBurnTime;
     }
 }
 
@@ -105,12 +122,20 @@ class TypeCandleThree {
         return this.TYPE_CANDLE_NAME_3;
     }
 
+    public int spicyNDiceyBurnTime() {
+        return this.typeCandleBurnTime3;
+    }
+
     public void setSpicyNDiceyAmount(int newSpicyNDiceyAmount) {
         this.typeCandleAmount3 = newSpicyNDiceyAmount;
     }
 
     public void setSpicyNDicey(double newSpicyNDiceyPrice) {
         this.typeCandlePrice3 = newSpicyNDiceyPrice;
+    }
+
+    public void setSpicyNDiceyBurnTime(int newSpicyNDiceyBurnTime) {
+        this.typeCandleBurnTime3 = newSpicyNDiceyBurnTime;
     }
 }
 
@@ -144,24 +169,48 @@ public class CandleShop {
         double userCandleChoicePrice3 = (double) candleThree.spicyNDiceyAmount() * candleThree.spicyNDiceyPrice();
         // adds up the total of each individual candle
         double userCandleTotalPrice = (double) userCandleChoicePrice1 + userCandleChoicePrice2 + userCandleChoicePrice3;
+        // Determines the amount per burn time of each candle
+        double updatedBurnTime1 = (double) userCandleChoicePrice1 / candleOne.lusciousLavenderBurnTime();
+        double updatedBurnTime2 = (double) userCandleChoicePrice2 / candleTwo.fragrantFloralsBurnTime();
+        double updatedBurnTime3 = (double) userCandleChoicePrice3 / candleThree.spicyNDiceyBurnTime();
+        double updatedBurnTimeTotal = (double) updatedBurnTime1 + updatedBurnTime2 + updatedBurnTime3;
+
+        // I used two methods to format my double values
+        // This is where I format using an import text method
+        DecimalFormat formatter = new DecimalFormat("0.00");
+        String formatted1 = formatter.format(updatedBurnTime1);
+        String formatted2 = formatter.format(updatedBurnTime2);
+        String formatted3 = formatter.format(updatedBurnTime3);
+        String formattedTotal = formatter.format(updatedBurnTimeTotal);
 
         // prints out each individual price totals
         // This line is used to make the results easier to read from the console
+        // Break Line
         System.out.println(
                 "\n" + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
-        System.out.println(candleOne.lusciousLavender() + "\n" + "Amount: " + candleOne.lusciousLavenderAmount() + "\n"
-                + "Price: $" + userCandleChoicePrice1);
+
+        System.out.printf(candleOne.lusciousLavender() + "\n" + "Amount: " + candleOne.lusciousLavenderAmount() + "\n"
+                + "Dollar per Burn Time: " + formatted1 + "\n" + "Price: $" + "%.2f", userCandleChoicePrice1);
+        // Break Line
         System.out.println(
                 "\n" + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
-        System.out.println(candleTwo.fragrantFlorals() + "\n" + "Amount: " + candleTwo.fragrantFloralsAmount() + "\n"
-                + "Price: $" + userCandleChoicePrice2);
+
+        System.out.printf(candleTwo.fragrantFlorals() + "\n" + "Amount: " + candleTwo.fragrantFloralsAmount() + "\n"
+                + "Dollar per Burn Time: " + formatted2 + "\n" + "Price: $" + "%.2f", userCandleChoicePrice2);
+        // Break Line
         System.out.println(
                 "\n" + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
-        System.out.println(candleThree.spicyNDicey() + "\n" + "Amount: " + candleThree.spicyNDiceyAmount() + "\n"
-                + "Price: $" + userCandleChoicePrice3);
+
+        System.out.printf(candleThree.spicyNDicey() + "\n" + "Amount: " + candleThree.spicyNDiceyAmount() + "\n"
+                + "Dollar per Burn Time: " + formatted3 + "\n" + "Price: $" + "%.2f", userCandleChoicePrice3);
+        // Break Line
         System.out.println(
                 "\n" + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
+
         // prints out the total price of all the candles added together
-        System.out.println("Total Price: " + userCandleTotalPrice);
+        System.out.printf("Total Dollar per Burn Time: " + formattedTotal + "\n" + "Total Price: " + "%.2f",
+                userCandleTotalPrice);
+        System.out.println("\n");
+
     }
 }
