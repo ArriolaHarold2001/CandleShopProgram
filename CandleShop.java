@@ -142,7 +142,7 @@ class TypeCandleThree {
 }
 
 public class CandleShop {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // Candle Objects
         TypeCandleOne candleOne = new TypeCandleOne("Luscious Lavender", 2.50, 5, 0);
         TypeCandleTwo candleTwo = new TypeCandleTwo("Fragrant Floral's", 3.75, 7, 0);
@@ -233,6 +233,10 @@ public class CandleShop {
         } else if (continuePrompt > 1000) {
             System.out.println(
                     "Hey! your not supposed to be back here. Get out of here and put those candles back where you found them! This area is EMPLOYEE ONLY!!");
+            Thread.sleep(3000);
+            System.out.println("This is my last Warning!");
+            Thread.sleep(4000);
+            System.out.println("Ok! you made me do it. You are now banned from the Candle Shop!");
         }
     }
 }
