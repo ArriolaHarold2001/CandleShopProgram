@@ -44,8 +44,8 @@ class TypeCandleOne {
         this.typeCandleAmount1 = newLusciousLavenderAmount;
     }
 
-    public void setLusciousLavenderPrice(double newLusciousLevenderPrice) {
-        this.typeCandlePrice1 = newLusciousLevenderPrice;
+    public void setLusciousLavenderPrice(double newLusciousLavenderPrice) {
+        this.typeCandlePrice1 = newLusciousLavenderPrice;
     }
 
     public void setLusciousLavenderBurnTime(int newLusciousLavenderBurnTime) {
