@@ -1,10 +1,5 @@
 import java.util.Scanner;
 
-//The candle names are
-//Luscious Lavender
-//Fragrent Florals
-//Spicy N' Dicey
-
 class Candle {
     private String name;
     private double price;
@@ -27,10 +22,6 @@ class Candle {
         return this.name;
     }
 
-    public double getPrice() {
-        return this.price;
-    }
-
     public int getBurnTime() {
         return this.burnTime;
     }
@@ -43,27 +34,11 @@ class Candle {
         return this.totalPrice;
     }
 
-    public int getTotalBurnTime() {
-        return this.totalBurnTime;
-    }
-
     public double getTotalCostPerBurn() {
         return this.costPerBurnTime;
     }
 
     // Setters
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public void setBurnTime(int burnTime) {
-        this.burnTime = burnTime;
-    }
 
     public void setAmount(int amount) {
         this.amount = amount;
