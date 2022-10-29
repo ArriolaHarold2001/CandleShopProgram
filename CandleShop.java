@@ -1,11 +1,5 @@
 import java.util.Scanner;
 
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
-
-import java.text.DecimalFormat;
-
-// in interaction tab -- > run CandleShop
-
 //The candle names are
 //Luscious Lavender
 //Fragrent Florals
@@ -43,6 +37,18 @@ class Candle {
 
     public int getAmount() {
         return this.amount;
+    }
+
+    public double getTotalPrice() {
+        return this.totalPrice;
+    }
+
+    public int getTotalBurnTime() {
+        return this.totalBurnTime;
+    }
+
+    public double getTotalCostPerBurn() {
+        return this.costPerBurnTime;
     }
 
     // Setters
@@ -84,9 +90,9 @@ class Candle {
 
 public class CandleShop {
     public static void main(String[] args) throws InterruptedException {
-        double grandTotal;
-        int grandTotalBurnTime;
-        double costPerBurnTime;
+        double grandTotal = 0.0;
+        int grandTotalBurnTime = 0;
+        double grandCostPerBurnTime = 0.0;
 
         // Candle Objects
         Candle candleOne = new Candle("Luscious Lavender", 2.50, 5, 0);
@@ -98,9 +104,9 @@ public class CandleShop {
         Scanner keyboard = new Scanner(System.in);
         // other variables to help complete the algorithm to sell Candles
         System.out.println("Enter 0 to continue: ");
+        keyboard.nextInt();
 
         for (int i = 0; i < candles.length; i++) {
-            keyboard.nextInt();
             System.out.println(String.format(
                     "How many of the %s candles would you like? Enter a number amount.", candles[i].getName()));
             candles[i].setAmount(keyboard.nextInt());
@@ -109,66 +115,29 @@ public class CandleShop {
 
             grandTotal += candles[i].totalPrice();
             grandTotalBurnTime += candles[i].totalBurnTime();
-            costPerBurnTime += candles[i].costPerBurnTime();
+            grandCostPerBurnTime += candles[i].costPerBurnTime();
         }
 
-        // I used two methods to format my double values
-        // This is where I format using an import text method
-        DecimalFormat formatter = new DecimalFormat("0.00");
-        String formatted1 = formatter.format(updatedBurnTime1);
-        String formatted2 = formatter.format(updatedBurnTime2);
-        String formatted3 = formatter.format(updatedBurnTime3);
-        String formattedTotal = formatter.format(updatedBurnTimeTotal);
-
-        // Easter egg
-        if (continuePrompt <= 1000) {
-
-            // prints out each individual price totals
-            // This line is used to make the results easier to read from the console
-            // Break Line
-            System.out.println("\n" + "Receipt");
+        System.out.println("\n" + "Receipt");
+        for (int i = 0; i < candles.length; i++) {
             System.out.println("\n"
-                    + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
+                    + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+                    + "\n");
 
             System.out.printf(
-                    candleOne.lusciousLavender() + "\n" + "Amount: " + candleOne.lusciousLavenderAmount() + "\n"
-                            + "Burn Time: " + candleOne.lusciousLavenderBurnTime() + " hours" + "\n"
-                            + "Dollar per Burn Time: " + formatted1 + "\n" + "Price: $" + "%.2f",
-                    userCandleChoicePrice1);
-            // Break Line
+                    candles[i].getName() + "\n" + "Amount: " + candles[i].getAmount() + "\n"
+                            + "Burn Time: " + candles[i].getBurnTime() + " hours" + "\n"
+                            + "Dollar per Burn Time: " + candles[i].getTotalCostPerBurn() + "\n" + "Price: $"
+                            + "%.2f",
+                    candles[i].getTotalPrice());
             System.out.println("\n"
-                    + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
-
-            System.out.printf(
-                    candleTwo.fragrantFlorals() + "\n" + "Amount: " + candleTwo.fragrantFloralsAmount() + "\n"
-                            + "Burn Time: " + candleTwo.fragrantFloralsBurnTime() + " hours" + "\n"
-                            + "Dollar per Burn Time: " + formatted2 + "\n" + "Price: $" + "%.2f",
-                    userCandleChoicePrice2);
-            // Break Line
-            System.out.println("\n"
-                    + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
-
-            System.out.printf(
-                    candleThree.spicyNDicey() + "\n" + "Amount: " + candleThree.spicyNDiceyAmount() + "\n"
-                            + "Burn Time: " + candleThree.spicyNDiceyBurnTime() + " hours" + "\n"
-                            + "Dollar per Burn Time: " + formatted3 + "\n" + "Price: $" + "%.2f",
-                    userCandleChoicePrice3);
-            // Break Line
-            System.out.println("\n"
-                    + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + "\n");
-
-            // prints out the total price of all the candles added together
-            System.out.printf("Total Burn Time: " + totalBurnTime + "\n" + "Total Dollar per Burn Time: "
-                    + formattedTotal + "\n" + "Total Price: " + "%.2f", userCandleTotalPrice);
-            System.out.println("\n");
-            // in interaction tab -- > run CandleShop
-        } else if (continuePrompt > 1000) {
-            System.out.println(
-                    "Hey! your not supposed to be back here. Get out of here and put those candles back where you found them! This area is EMPLOYEE ONLY!!");
-            Thread.sleep(3000);
-            System.out.println("This is my last Warning!");
-            Thread.sleep(4000);
-            System.out.println("Ok! you made me do it. You are now banned from the Candle Shop!");
+                    + "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+                    + "\n");
         }
+
+        System.out.printf("Total Burn Time: " + grandTotalBurnTime + "\n" + "Total Dollar per Burn Time: "
+                + grandCostPerBurnTime + "\n" + "Total Price: " + "%.2f", grandTotal);
+        System.out.println("\n");
+        keyboard.close();
     }
 }
